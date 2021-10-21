@@ -1,4 +1,5 @@
 const conn = require("../../config/database");
+const data = require("../../config/db.json");
 
 module.exports = (app) => {
   app.get("/cursos", (req, res) => {
@@ -17,20 +18,8 @@ module.exports = (app) => {
     });
   });
 
-  app.get("/contacto/email/:email", (req, res) => {
-    let query = `SELECT * FROM contacto WHERE email = '${req.params.email}';`;
-    conn.query(query, (err, rows) => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({ status: 0, msg: "Error" });
-      } else {
-        if (rows.length > 0) {
-          res.json({ status: 1, msg: "Exitoso", data: rows });
-        } else {
-          res.status(404).json({ status: 0, msg: "Contacto no encontrado" });
-        }
-      }
-    });
+  app.get("/prueba", (req, res) => {
+    res.send(data);
   });
 
   app.get("/contacto/id/:id", (req, res) => {
