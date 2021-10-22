@@ -1,17 +1,19 @@
 const mysql = require("mysql");
+require("dotenv").config();
 
 var conn = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "root",
-  password: "root",
-  database: "FAW",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  port: process.env.DB_PORT,
+  password: process.env.DB_PASS,
+  database: process.env.DB_DATABASE,
 });
 
 conn.connect((err) => {
   if (err) {
-    console.log("Error en conección de Base de Datos");
+    console.log("Database connection error");
   } else {
-    console.log("Conexión exitosa");
+    console.log("Successful connection to the database");
   }
 });
 
