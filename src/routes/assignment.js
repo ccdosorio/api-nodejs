@@ -1,7 +1,8 @@
 const conn = require("../config/database");
+const Service = require("../service");
 
 module.exports = (app) => {
-  app.get("/asignaciones", (req, res) => {
+  app.get("/asignaciones", Service.verify, (req, res) => {
     let query = `SELECT a.codigoa, a.codigou, a.codigoc, CONCAT(u.nombre,' ',u.apellido) AS alumno, 
                 u.carnet, c.codigoc, c.nombre AS curso
                 FROM asignacion a
@@ -13,7 +14,7 @@ module.exports = (app) => {
     });
   });
 
-  app.get("/asignaciones/:codigou", (req, res) => {
+  app.get("/asignaciones/:codigou", Service.verify, (req, res) => {
     let query = `SELECT a.codigoa, a.codigou, a.codigoc, CONCAT(u.nombre,' ',u.apellido) AS alumno, 
                 u.carnet, c.codigoc, c.nombre AS curso
                 FROM asignacion a
@@ -37,7 +38,7 @@ module.exports = (app) => {
     });
   });
 
-  app.post("/asignaciones", (req, res) => {
+  app.post("/asignaciones", Service.verify, (req, res) => {
     let body = {
       codigou: req.body.codigou,
       codigoc: req.body.codigoc,
