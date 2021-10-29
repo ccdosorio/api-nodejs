@@ -8,6 +8,7 @@ require("./src/routes/career")(app);
 require("./src/routes/user")(app);
 require("./src/routes/assignment")(app);
 require("./src/routes/type")(app);
+require("./src/routes/activities")(app);
 
 /**
  * CORS
