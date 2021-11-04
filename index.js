@@ -9,6 +9,8 @@ require("./src/routes/user")(app);
 require("./src/routes/assignment")(app);
 require("./src/routes/type")(app);
 require("./src/routes/activities")(app);
+require("./src/routes/schedules")(app);
+
 
 /**
  * CORS
